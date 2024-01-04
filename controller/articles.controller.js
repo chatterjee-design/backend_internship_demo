@@ -66,4 +66,29 @@ const getallArticles = async (req, res, next) => {
     }
 }
 
-export {createArticles, getallArticles}
+//getOneArticle
+const getOneArticle = async (req, res, next) =>{
+    try {
+        const id = req.params._id
+
+     //get book details from the params
+     const article = await Articles.findById(id);
+
+    //id and book not found
+    if (!article ) {
+        return next(new AppError(" article not found with this id", 400));
+    }
+
+    //if everything is fine
+    res.status(200).json({
+        success: true,
+        message: "article get successfully ",
+        article,
+      });
+    } catch (error) {
+        console.log(error.message)
+        return next(new AppError("Internal Server Error", 500));
+    }
+}
+
+export {createArticles, getallArticles, getOneArticle}
