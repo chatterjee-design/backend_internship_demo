@@ -1,5 +1,5 @@
 import  {Router } from "express";
-import { createArticles, getOneArticle, getallArticles } from "../controller/articles.controller.js";
+import { createArticles, deleteArticles, getOneArticle, getallArticles, updateArticle } from "../controller/articles.controller.js";
 
 
 const articlesRouter = Router();
@@ -12,6 +12,8 @@ articlesRouter
 articlesRouter
 .route("/:_id")
 .get(getOneArticle)
+.put(updateArticle)
+.delete(deleteArticles)
 
 
 export default articlesRouter;
